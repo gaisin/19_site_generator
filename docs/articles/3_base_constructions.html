@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Основные конструкции</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+<body>
+
+    <div class="navbar header">
+        <div class="container"><h1><a href="index.html">Энциклопедия начинающего питониста</h1></a></div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <h2>
+<b>Основные конструкции</b>
+</h2>
+        
+<h3>Коротко о главных управляющих конструкциях</h3>
+<p>Сейчас мы совсем реактивно пройдёмся по самым основным управляющим конструкциям. Гет реди.</p>
+<h3>if</h3>
+<p>Ну, вы все знаете условный оператор, так ведь?</p>
+<pre><code>:::python
+if age &lt; 18:
+    print('Никаких тебе сигарет. Ишь чего удумал!')
+else:
+    print('Вам синий или красный?')
+</code></pre>
+<p>Есть ещё <code>elif</code>, их можно сделать много в одном операторе. Это такой аналог <code>which</code> из других языков.</p>
+<h3>for</h3>
+<p>Цикл. Вместо сишного варианта с init, cond и loop выражениями, тут просто итерация по коллекции:</p>
+<pre><code>:::python
+for user in users:
+    print user
+</code></pre>
+<p>Иногда надо не пройтись по списку, а выполнить одну и ту же операцию много раз. Тогда хорошо подходит функция
+<a href="https://docs.python.org/3.5/library/functions.html#func-range">range</a>. Она возвращает целые числа в заданном промежутке,
+поэтому в цикле её можно использовать так:</p>
+<pre><code>:::python
+for level_num in range(10):
+    user.levelup()  # пользователь получит десять уровней. Читер!
+</code></pre>
+<p>А вот <code>break</code> и <code>continue</code> делают то же, что в Паскале и Сях. <code>break</code> прерывает выполнение цикла,
+<code>continue</code> завершает текущую итерацию и переходит к следующей.</p>
+<p>Ещё у цикла есть <code>else</code>, но про него почти никто не знает. Как он работает можно посмотреть
+<a href="https://docs.python.org/3.5/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops">в официальной документации</a>.</p>
+<h3>def</h3>
+<p>Начало объявления функции. После него идёт название,
+потом – аргументы функции в скобках, двоеточие и тело функции с отступом:</p>
+<pre><code>:::python
+def get_square(value):
+    return value ** 2
+</code></pre>
+<p>То, что после <code>return</code> – это возвращаемое значение функции.</p>
+<p>Функцию создали, вот как её теперь использовать:</p>
+<pre><code>:::python
+print(get_square(2))  # 4
+print(get_square(6))  # 36
+print(get_square('ыыы'))  # всё сломается
+</code></pre>
+<p>А вот пример посложнее, из исходников Девмана. Получает пользователя по айди в Слаке:</p>
+<pre><code>:::python
+def _get_user_by_slack_id(slack_user_id):
+    user_email = get_slack_email_for_user(slack_user_id)
+    return User.objects.filter(email__iexact=user_email).first()
+</code></pre>
+<p>(вот почему емейл необходим)</p>
+<h3>range</h3>
+<p>Функция очень полезная, поэтому про неё отдельно. <code>range</code> генерирует целые числа в заданном диапазоне. Например:</p>
+<pre><code>:::python
+range(10)  # 0..0
+range(5, 10)  # 5..9
+range(5, 10, 2)  # [5, 7, 9] (от пяти до девяти с шагом два)
+</code></pre>
+<p>Фишка этой функции заключается в том, что она не создаёт список со всеми числами.
+Вместо этого он вернёт объект, который будет возвращать элементы как только они нужны, по одному.
+Поэтому код <code>range(9999999999999)</code> не съест всю память.
+Этот хитрый объект (Sequence ABC, но об этом потом) можно превратить в список явно:</p>
+<pre><code>:::python
+list(range(9999999999999))
+</code></pre>
+<p>(не советую так делать)</p>
+<h3>pass</h3>
+<p>Блок, который ничего не делает:</p>
+<pre><code>:::python
+for i in range(20):
+    pass  # 20 раз сделать ничего. Очень полезно!
+</code></pre>
+<p>Часто используется в начальном коде для заданий: в финальной версии вместо <code>pass</code> должен быть настоящий код.</p>
+<a class="btn btn-secondary margin_top_and_bottom_30" href="../index.html">На главную</a>
+
+      </div>
+
+    </div><!-- /.container -->
+
+    <div class="footer">
+        <div class="container">
+            <span>Руслан Гайсин, 2017 | Статьи предоставлены авторами <a href="http://devman.org/">devman.org</a></span>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

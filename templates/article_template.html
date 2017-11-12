@@ -1,0 +1,9 @@
+{% extends 'base_template.html' %}
+{% block title %}
+<b>{{ md_title|e }}</b>
+{% endblock%}
+
+{% block content %}
+{{ md_content }}
+<a class="btn btn-secondary margin_top_and_bottom_30" href="../index.html">На главную</a>
+{% endblock %}

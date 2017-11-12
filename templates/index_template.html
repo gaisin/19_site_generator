@@ -1,0 +1,28 @@
+{% extends 'base_template.html' %}
+{% block title %}
+{% endblock%}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Здравствуй, юный падаван!</h1>
+        <p>На данном сайте собраны статьи для изучающих python. Сайт сделан в учебных целях: все статьи написаны с помощью markdown разметки, после чего с помощью python-скрипта были автоматически сгенерированы html-страницы.</p>
+        <p>Приятного просмотра!</p>
+    </div>
+</div>
+
+<div class="row">
+{% for topic in topics %}
+   <div class='col-3'>
+        <h4>{{ topic['title'] }}</h4>
+        {% for article in articles %}
+            {% if article['topic']==topic['slug'] %}
+                <a href="articles/{{ article['html_link']|e }}">{{ article['title']|e}}</a>
+                <br/>
+            {% endif %}
+        {% endfor %}
+   </div>
+{% endfor %}
+</div>
+
+{% endblock %}
