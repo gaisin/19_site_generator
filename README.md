@@ -1,6 +1,8 @@
 # Encyclopedia
 
-[TODO. There will be project description]
+This is a script that converts articles given in markdown format to an HTML-page.
+
+Check the result on github.pages: [https://gaisin.github.io/19_site_generator/index.html](https://gaisin.github.io/19_site_generator/index.html)
 
 # Some useful links
 
